@@ -24,6 +24,23 @@ PRICE_IDS = {
     'professional_yearly': os.getenv('STRIPE_PROFESSIONAL_YEARLY_PRICE_ID'),
 }
 
+@app.route('/', methods=['GET'])
+def home():
+    """Home page"""
+    return jsonify({
+        'message': 'Welcome to ReviewMaestro API',
+        'service': 'ReviewMaestro Payment API',
+        'version': '1.0.0',
+        'endpoints': {
+            'health': '/health',
+            'config': '/api/config',
+            'create_subscription': '/api/create-subscription',
+            'portal_session': '/api/create-portal-session',
+            'webhook': '/api/webhook'
+        },
+        'status': 'operational'
+    })
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
